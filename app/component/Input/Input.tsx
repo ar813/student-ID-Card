@@ -1,11 +1,29 @@
 "use client"
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import { IoEyeSharp } from "react-icons/io5";
 
 
-const Input = ({ setSchoolname, setSchoolAddress, setStudentName, setFatherName, setRollNo, setDateOfBirth, setLevel, level, setPhoneNo, setStartingDate, setExpiryDate, setLogoo, setProfilPicture, setShowInput, setShowCard }: any) => {
+type InputProps = {
+    setSchoolname: (value: string) => void;
+    setSchoolAddress: (value: string) => void;
+    setStudentName: (value: string) => void;
+    setFatherName: (value: string) => void;
+    setRollNo: (value: string) => void;
+    setDateOfBirth: (value: string) => void;
+    setLevel: (value: string) => void;
+    level: string;
+    setPhoneNo: (value: string) => void;
+    setStartingDate: (value: string) => void;
+    setExpiryDate: (value: string) => void;
+    setLogoo: (value: string | null) => void;
+    setProfilPicture: (value: string | null) => void;
+    setShowInput: (value: boolean) => void;
+    setShowCard: (value: boolean) => void;
+  };  
+  
+const Input: React.FC<InputProps>  = ({ setSchoolname, setSchoolAddress, setStudentName, setFatherName, setRollNo, setDateOfBirth, setLevel, level, setPhoneNo, setStartingDate, setExpiryDate, setLogoo, setProfilPicture, setShowInput, setShowCard }) => {
 
     useEffect(()=>{
         AOS.init({

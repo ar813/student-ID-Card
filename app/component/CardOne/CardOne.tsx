@@ -36,7 +36,7 @@ export default function Home() {
     setLevel('SSC II')
   }
 
-  function handleImageUpload(e: any) {
+  function handleImageUpload(e:React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
@@ -48,7 +48,7 @@ export default function Home() {
   }
 
   function forPdf() {
-    let doc = new jsPDF()
+    const doc = new jsPDF()
     if (name && fatherName && rollNo && startingyear && lastyear && level) {
 
       doc.rect(20, 30, 120, 70);

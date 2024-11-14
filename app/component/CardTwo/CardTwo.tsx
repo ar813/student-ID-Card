@@ -1,12 +1,11 @@
 "use client"
-// @ts-ignore
 import QRCode from "qrcode";
-// @ts-ignore
 import html2pdf from "html2pdf.js"
 import { IoBackspaceSharp } from "react-icons/io5";
 import { FaFilePdf } from "react-icons/fa6";
 import { MdOutlineQrCodeScanner } from "react-icons/md";
-import { useRef, useState } from "react";
+import { useState } from "react";
+import { useRef } from "react"
 import Image from "next/image"
 import shapeOne from "../../../public/images/Shape 1.png"
 import profilPic from "../../../public/images/profilPic.png"
@@ -18,8 +17,32 @@ import qrcode from "../../../public/images/qrcode.png"
 
 
 // npm i html2pdf.js@0.9.0
+// create a file named html2pdf.d.ts in your src/app or app directory.
+// Add the following content to the file
+//            declare module 'html2pdf.js';
 
-const page = ({ schoolName, schoolAddress, studentName, fatherName, rollNo, dateOfBirth, level, phoneNo, startingDate, expiryDate, logoo, profilPicture, setShowCard, setShowInput }: any) => {
+
+type CartTwoProps = {
+  schoolName: string;
+  schoolAddress: string;
+  studentName: string;
+  fatherName: string;
+  rollNo: string;
+  dateOfBirth: string;
+  level: string;
+  phoneNo: string;
+  startingDate: string;
+  expiryDate: string;
+  logoo: string | null;
+  profilPicture: string | null;
+  setShowCard: (value: boolean) => void;
+  setShowInput: (value: boolean) => void;
+};
+
+
+
+
+const CardTwo: React.FC<CartTwoProps> = ({ schoolName, schoolAddress, studentName, fatherName, rollNo, dateOfBirth, level, phoneNo, startingDate, expiryDate, logoo, profilPicture, setShowCard, setShowInput }) => {
 
   const slidesRef = useRef(null)
   const handleGeneratePdf = () => {
@@ -32,7 +55,7 @@ const page = ({ schoolName, schoolAddress, studentName, fatherName, rollNo, date
         jsPDF: { unit: "in", format: "letter", orientation: "portrait" }
       }
       html2pdf().from(slidesRef.current).set(opt).save();
-    }else{
+    } else {
       alert("Data is required")
     }
   }
@@ -43,10 +66,10 @@ const page = ({ schoolName, schoolAddress, studentName, fatherName, rollNo, date
   const handleGenerateQRCode = () => {
     const combinedText = `Name: ${studentName}\nFather Name: ${fatherName}\nRoll No: ${rollNo}\nClass: ${level}\nSchool: ${schoolName} \nPhone No: ${phoneNo}`;
     QRCode.toDataURL(combinedText)
-      .then((url: any) => {
+      .then((url: string) => {
         setQrCodeData(url);
       })
-      .catch((err: any) => {
+      .catch((err: Error) => {
         console.error("Error generating QR Code", err);
       });
 
@@ -114,5 +137,5 @@ const page = ({ schoolName, schoolAddress, studentName, fatherName, rollNo, date
   );
 }
 
-export default page
+export default CardTwo
 
