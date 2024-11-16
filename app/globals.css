@@ -28,8 +28,3 @@ body {
     text-wrap: balance;
   }
 }
-
-
-.page-break {
-  page-break-after: always;
-}

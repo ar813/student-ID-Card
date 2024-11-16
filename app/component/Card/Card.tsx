@@ -1,4 +1,5 @@
 "use client"
+
 import QRCode from "qrcode";
 import html2pdf from "html2pdf.js"
 import { IoBackspaceSharp } from "react-icons/io5";
@@ -7,11 +8,11 @@ import { MdOutlineQrCodeScanner } from "react-icons/md";
 import { useState } from "react";
 import { useRef } from "react"
 import Image from "next/image"
-import shapeOne from "../../../public/images/Shape 1.png"
+import shapeOne from "../../../public/images/one.png"
 import profilPic from "../../../public/images/profilPic.png"
 import logo from "../../../public/images/h.png"
-import shapeTwo from "../../../public/images/Shape 2.png"
-import shapeThree from "../../../public/images/Shape 1 (1).png"
+import shapeTwo from "../../../public/images/two.png"
+import shapeThree from "../../../public/images/three.png"
 import qrcode from "../../../public/images/qrcode.png"
 
 
@@ -22,7 +23,7 @@ import qrcode from "../../../public/images/qrcode.png"
 //            declare module 'html2pdf.js';
 
 
-type CartTwoProps = {
+type Card = {
   schoolName: string;
   schoolAddress: string;
   studentName: string;
@@ -39,10 +40,7 @@ type CartTwoProps = {
   setShowInput: (value: boolean) => void;
 };
 
-
-
-
-const CardTwo: React.FC<CartTwoProps> = ({ schoolName, schoolAddress, studentName, fatherName, rollNo, dateOfBirth, level, phoneNo, startingDate, expiryDate, logoo, profilPicture, setShowCard, setShowInput }) => {
+const Card = ({ schoolName, schoolAddress, studentName, fatherName, rollNo, dateOfBirth, level, phoneNo, startingDate, expiryDate, logoo, profilPicture, setShowCard, setShowInput }: Card) => {
 
   const slidesRef = useRef(null)
   const handleGeneratePdf = () => {
@@ -79,8 +77,6 @@ const CardTwo: React.FC<CartTwoProps> = ({ schoolName, schoolAddress, studentNam
     setShowCard(false)
     setShowInput(true)
   }
-
-
 
   return (
     <div className={`flex flex-col items-center justify-center sm:h-screen `} >
@@ -137,5 +133,5 @@ const CardTwo: React.FC<CartTwoProps> = ({ schoolName, schoolAddress, studentNam
   );
 }
 
-export default CardTwo
+export default Card
 

@@ -1,31 +1,33 @@
 "use client";
 
-import CartTwo from "./component/CardTwo/CardTwo";
-import Input from "./component/Input/Input";
+import dynamic from 'next/dynamic';
+
+const InputComponent = dynamic(() => import('./component/Input/Input'), { ssr: false });
+const CardComponent = dynamic(() => import('./component/Card/Card'), { ssr: false });
 import { useState } from "react";
 
 const Home = () => {
-  const [schoolName, setSchoolname] = useState('');
-  const [schoolAddress, setSchoolAddress] = useState('');
-  const [studentName, setStudentName] = useState('');
-  const [fatherName, setFatherName] = useState('');
-  const [rollNo, setRollNo] = useState('');
-  const [dateOfBirth, setDateOfBirth] = useState('');
-  const [level, setLevel] = useState('');
-  const [phoneNo, setPhoneNo] = useState('');
-  const [startingDate, setStartingDate] = useState('');
-  const [expiryDate, setExpiryDate] = useState('');
+  const [schoolName, setSchoolname] = useState<string>('');
+  const [schoolAddress, setSchoolAddress] = useState<string>('');
+  const [studentName, setStudentName] = useState<string>('');
+  const [fatherName, setFatherName] = useState<string>('');
+  const [rollNo, setRollNo] = useState<string>('');
+  const [dateOfBirth, setDateOfBirth] = useState<string>('');
+  const [level, setLevel] = useState<string>('');
+  const [phoneNo, setPhoneNo] = useState<string>('');
+  const [startingDate, setStartingDate] = useState<string>('');
+  const [expiryDate, setExpiryDate] = useState<string>('');
   const [logoo, setlogoo] = useState<string | null>(null);
   const [profilPicture, setProfilPicture] = useState<string | null>(null);
 
-  const [showInput, setShowInput] = useState(true);
-  const [showCard, setShowCard] = useState(false);
+  const [showInput, setShowInput] = useState<boolean>(true);
+  const [showCard, setShowCard] = useState<boolean>(false);
 
 
   return (
     <div>
       <div  className={` ${showInput ? "block" : "hidden"} `}>
-        <Input
+        <InputComponent
           setSchoolname={setSchoolname}
           setSchoolAddress={setSchoolAddress}
           setStudentName={setStudentName}
@@ -33,7 +35,6 @@ const Home = () => {
           setRollNo={setRollNo}
           setDateOfBirth={setDateOfBirth}
           setLevel={setLevel}
-          level = {level}
           setPhoneNo={setPhoneNo}
           setStartingDate={setStartingDate}
           setExpiryDate={setExpiryDate}
@@ -44,7 +45,7 @@ const Home = () => {
         />
       </div>
       <div className={` ${showCard ? "block" : "hidden"} `}>
-        <CartTwo
+        <CardComponent
           schoolName={schoolName}
           schoolAddress={schoolAddress}
           studentName={studentName}

@@ -13,7 +13,6 @@ type InputProps = {
     setRollNo: (value: string) => void;
     setDateOfBirth: (value: string) => void;
     setLevel: (value: string) => void;
-    level: string;
     setPhoneNo: (value: string) => void;
     setStartingDate: (value: string) => void;
     setExpiryDate: (value: string) => void;
@@ -23,20 +22,19 @@ type InputProps = {
     setShowCard: (value: boolean) => void;
   };  
   
-const Input: React.FC<InputProps>  = ({ setSchoolname, setSchoolAddress, setStudentName, setFatherName, setRollNo, setDateOfBirth, setLevel, level, setPhoneNo, setStartingDate, setExpiryDate, setLogoo, setProfilPicture, setShowInput, setShowCard }) => {
+const Input = ({ setSchoolname, setSchoolAddress, setStudentName, setFatherName, setRollNo, setDateOfBirth, setLevel, setPhoneNo, setStartingDate, setExpiryDate, setLogoo, setProfilPicture, setShowInput, setShowCard }: InputProps) => {
 
     useEffect(()=>{
         AOS.init({
             duration: 700,
             offset: 50,
         });
-    })
+    },[])
 
 
     const handleLogo = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
-            // Create a URL for the selected file
             const objectUrl = URL.createObjectURL(file);
             setLogoo(objectUrl);
         }
@@ -45,7 +43,6 @@ const Input: React.FC<InputProps>  = ({ setSchoolname, setSchoolAddress, setStud
     const handleProfilePicture = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
-            // Create a URL for the selected file
             const objectUrl = URL.createObjectURL(file);
             setProfilPicture(objectUrl);
         }
@@ -54,32 +51,6 @@ const Input: React.FC<InputProps>  = ({ setSchoolname, setSchoolAddress, setStud
     function showing() {
         setShowCard(true)
         setShowInput(false)
-    }
-
-    if (level == '1') {
-        setLevel("Level-1")
-    } else if (level == '2') {
-        setLevel("Level-2")
-    } else if (level == '3') {
-        setLevel("Level-3")
-    } else if (level == '4') {
-        setLevel("Level-4")
-    } else if (level == '5') {
-        setLevel("Level-5")
-    } else if (level == '6') {
-        setLevel("Level-6")
-    } else if (level == '7') {
-        setLevel("Level-7")
-    } else if (level == '8') {
-        setLevel("Level-8")
-    } else if (level == '9') {
-        setLevel("SSC I")
-    } else if (level == "10") {
-        setLevel("SSC II")
-    } else if (level == "11") {
-        setLevel("HSC I")
-    } else if (level == "12") {
-        setLevel("HSC II")
     }
 
     return (
